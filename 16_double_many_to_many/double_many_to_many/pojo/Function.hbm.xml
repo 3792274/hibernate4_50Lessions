@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="double_many_to_many.pojo">
+	<class name="Function">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="code"/>
+		<property name="url"/>
+		
+		<set name="roles" table="role_func" inverse="true">
+			<key column="fid"/>
+			<many-to-many column="rid" class="Role"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

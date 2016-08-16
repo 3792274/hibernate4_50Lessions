@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="inverse.pojo">
+	
+	<class name="Grade">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name"/>
+		
+		<!-- set是 Grade中的集合属性  name属性名称 -->
+		<!-- inverse设置由谁来管理关系， 如果为false则双方都可以管理关系，如果为true则关系由另一方来管理 -->
+		<set name="students" inverse="true" cascade="delete">
+			<key column="grade_id"></key>
+			<one-to-many class="Student"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

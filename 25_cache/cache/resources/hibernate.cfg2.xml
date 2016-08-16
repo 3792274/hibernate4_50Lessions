@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <!-- 配置数据库链接信息
+	1.hibernate.cfg.xml 来自复制的project\etc\
+	2.数据库配置内容，参考： project\etc\hibernate.properties
+ -->
+ <session-factory>
+   
+  <!-- 配置使用2级缓存 4.3中 -->
+  <property name="cache.use_second_level_cache">true</property>
+  <property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+  
+  <!-- 配置查询使用缓存，List使用缓存 -->
+  <property name="cache.use_query_cache">true</property> 
+  
+  
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql:///hibernate4?useSSL=true</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">12369</property>
+  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.format_sql">true</property>
+  <mapping resource="cache/pojo2/Book.hbm.xml"/>
+
+  
+  
+ </session-factory>
+</hibernate-configuration>

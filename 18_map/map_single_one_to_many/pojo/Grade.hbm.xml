@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="map_single_one_to_many.pojo">
+	<class name="Grade">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		<map name="students" cascade="all">
+			<!-- key表示Grade.id,Student表中外键名 -->
+			<key column="grade_id"/>
+			<!-- map-key是映射为map集合时，对应key值  key值 建议为唯一 ，根据学生的名字去取学生-->
+			<map-key type="string" column="name"/>
+			<one-to-many class="Student"/>
+		</map>
+	</class>
+</hibernate-mapping>

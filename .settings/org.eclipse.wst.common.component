@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="hibernate_50_class-0.0.1-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/01_helloHibernate"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/02_lifecycle"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/03_compositeID"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/04_bigObject"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/05_component"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/06_single_many_to_one"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/07_single_one_to_many"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/08_double_one_to_many"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/09_cascade"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/10_inverse"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/11_single_one_to_one_foreign"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/12_double_one_to_one_foreign"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/13_single_one_to_one_primary"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/14_double_one_to_one_primary"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/15_single_many_to_many"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/16_double_many_to_many"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/17_list"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/18_map"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/19_extends_one_table"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/20_one_class_one_table"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/21_extends_everyclass_table"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/22_annotations"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/23_HQL"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/24_lazy"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/25_cache"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/26_Locking"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/27_openSessionInView"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/28_struts2Hibernate"/>
+        <property name="java-output-path" value="/hibernate_50讲/build/classes"/>
+        <property name="context-root" value="hibernate_50_class"/>
+    </wb-module>
+</project-modules>

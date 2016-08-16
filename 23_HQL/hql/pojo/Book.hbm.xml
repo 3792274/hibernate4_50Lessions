@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	
+	<class name="hql.pojo.Book" table="book" >
+	
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		
+		<many-to-one name="category" class="hql.pojo.Category" cascade="save-update" fetch="select">
+			<column name="category_id" />
+		</many-to-one>
+		
+		<property name="author" type="java.lang.String">
+			<column name="author" />
+		</property>
+		
+		<property name="name" type="java.lang.String">
+			<column name="name" />
+		</property>
+		
+		<property name="price" type="java.lang.Double">
+			<column name="price" precision="22" scale="0" not-null="true" />
+		</property>
+		
+		<property name="pubDate" type="java.sql.Timestamp">
+			<column name="pubDate" length="19" />
+		</property>
+		
+		<!-- 使用过滤器 -->
+		<filter name="bookFilter" condition="id=:id"></filter>
+	</class>
+	
+	<!-- 命名查询 hql语句 名称不能重复，在整个项目中 -->
+	<query name="getByCategoryId">
+    	<![CDATA[
+    	from Book b where b.category.id=:id
+    	]]>
+	</query>
+	
+	<!-- 使用本地SQL命名查询 -->
+	<sql-query name="getAll">
+		<return alias="book" class="hql.pojo.Book"></return>
+	    <![CDATA[
+	    	select *  from book b;
+	    ]]>
+	</sql-query>
+	
+	<!-- 过滤器定义:定义参数 -->
+	<filter-def name="bookFilter">
+		<filter-param name="id" type="integer" />
+	</filter-def>
+
+
+
+</hibernate-mapping>

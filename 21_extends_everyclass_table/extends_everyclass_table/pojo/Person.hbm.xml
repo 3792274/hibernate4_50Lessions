@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="extends_everyclass_table.pojo">
+	
+	<class name="Person">
+		<id name="id" column="id">
+			<generator class="assigned"></generator>
+		</id>
+		
+		
+		<property name="name"/>
+		<property name="age"/>
+		
+		
+		<joined-subclass name="Teacher">
+			<key column="id"/>
+			<property name="salary"/>
+		</joined-subclass>
+		
+		
+		
+		<joined-subclass name="Student">
+			<key column="id"/>
+			<property name="work"/>
+		</joined-subclass>
+		
+		
+	</class>
+	
+	
+	
+</hibernate-mapping>

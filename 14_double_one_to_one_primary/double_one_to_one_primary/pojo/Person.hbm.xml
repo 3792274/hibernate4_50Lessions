@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="double_one_to_one_primary.pojo">
+	<class name="Person">
+		<id name="id">
+			<!-- foreign表示引用外键 -->
+			<generator class="foreign">
+				<!-- 引用idCard属性所对应的主键 -->
+				<param name="property">idCard</param>
+			</generator>
+		</id>
+		<property name="name"/>
+		<property name="age"/>
+		<!-- 一对一 -->
+		<one-to-one name="idCard" constrained="true" cascade="save-update"/>
+	</class>
+</hibernate-mapping>

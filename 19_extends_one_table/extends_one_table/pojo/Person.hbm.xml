@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="extends_one_table.pojo">
+	
+	
+	<class name="Person">
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		<!-- 指明鉴别器，既单表中标识列，用来标识此行数据是Teacher,还是Student -->
+		<discriminator column="type" type="string"/>
+		<property name="name"/>
+		<property name="age"/>
+	</class>
+	
+	
+	<!-- 子类还可以写在上面的主类中,那时不用指定extends="Person" -->
+	<subclass name="Student" discriminator-value="S" extends="Person">
+		<property name="work"/>
+	</subclass>
+	
+	<subclass name="Teacher" discriminator-value="T" extends="Person">
+		<property name="salary"/>
+	</subclass>
+	
+	
+</hibernate-mapping>

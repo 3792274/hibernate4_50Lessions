@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="lazy.pojo2">
+
+
+    <class name="Category" table="category" >
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+        
+        <set name="books" inverse="true" lazy="extra">
+            <key>
+                <column name="category_id" />
+            </key>
+            <one-to-many class="Book" />
+        </set>
+    </class>
+    
+    
+    
+    
+</hibernate-mapping>

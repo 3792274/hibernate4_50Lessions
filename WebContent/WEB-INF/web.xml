@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>hibernate_50讲</display-name>
+ 
+ 
+ 
+ 
+  <!--  #####################################################################################################   -->
+ 
+ <!-- 自定义OpenSession In View
+ 
+  <filter>
+  	<filter-name>osiv</filter-name>
+  	<filter-class>openSessionInView.filter.OpenSessionInView</filter-class>
+  </filter>
+  
+  
+  <filter-mapping>
+  		<filter-name>osiv</filter-name>
+  		<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+  
+  <servlet>
+  	<servlet-name>userservlet</servlet-name>
+  	<servlet-class>openSessionInView.servlet.UserServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>userservlet</servlet-name>
+  	<url-pattern>/userServlet</url-pattern>
+  </servlet-mapping>
+ 
+  -->
+ 
+ 
+ 
+ <!--  #####################################################################################################   -->
+ 
+ <!-- Struts2  和      Hibernate  -->
+ 
+ 
+  <filter>
+  	<filter-name>osiv</filter-name>
+  	<filter-class>struts2Hibernate.filter.OpenSessionInView</filter-class>
+  </filter>
+  <filter-mapping>
+  		<filter-name>osiv</filter-name>
+  		<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>struts2</filter-name>
+  	<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  			      
+  </filter>
+  <filter-mapping>
+  	<filter-name>struts2</filter-name>
+  	<url-pattern>*.action</url-pattern>
+ 
+
+ </filter-mapping>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

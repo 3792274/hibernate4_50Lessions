@@ -1,0 +1,260 @@
+2015.6.15  - 数据库 hibernate4
+----------------------------------------------------------------------
+一、HelloHibernate
+	1.添加jar,  hibernate-core  mysql-connector-java
+	2.复制 hibernate-release-4.3.11.Final\project\etc\hibernate.cfg.xml 
+	3.创建表
+		DROP TABLE IF EXISTS `user`;
+		CREATE TABLE `user` (
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `username` varchar(255) DEFAULT NULL,
+		  `password` varchar(255) DEFAULT NULL,
+		  PRIMARY KEY (`id`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	4.创建实体类User
+	5.生成User实体类映射文件，User.hbm.xml ，可以右键实体类自动生成。
+	6.将User.hbm.xml配置文件加入到hibernate.cfg.xml中
+		1.写代码：		<mapping resource=""/> </session-factory>
+		2.图形化操作hibernate.cfg.xml 添加
+	7.建立测试程序。TestUser_HelloWorld.java  ,及完善的TestException
+ 	8.添加日志 -Hibernate中使用log4j
+		1.默认情况下，hibernate4,使用jboss-logging
+		2.增加  Slf4japi.jar和log4j的jar (及转换包slf4j-log4j.jar)---maven: sli4j-slf4j-log4j
+		3.编写log4j.properties   来自Hibernate project/etc/
+		4.配置 hibernate.cfg.xml，show_sql、format_sql、hbm2ddl.auto update
+		
+---------------------------------------------------------------------
+二、生命周期与CRUD(02_lifecycle)
+		 
+---------------------------------------------------------------------
+三、 组合主键    03_compositeID
+
+-------------------------------------------------------------------
+四、大数据 二进制数据   04_bigObject
+
+--------------------------------------------------------------------
+五、组件 Teache中包含Address  05_component
+
+
+--------------------------------------------------------------------
+六、单向多对一  06_single_many_to_one
+
+
+--------------------------------------------------------------------
+七、单向一对多  07_single_one_to_many
+
+
+--------------------------------------------------------------------
+八、双向一对多  08_double_one_to_many
+
+
+--------------------------------------------------------------------
+九、级联  09_cascade,操作一个对象，会将操作级联到另一个对象
+ 	  一的一端：<set name="students" cascade="delete">
+ 	 多的一端：<many-to-one cascade=true>
+
+
+--------------------------------------------------------------------
+十、由谁管理关联关系   10_inverse, 
+ 	   1.默认应该设置在 1的一端<set inverse="true">
+ 	   2.当inverse=”false”时，谁都可以管理关系谁维护。如果都管理了，那么都维护。
+ 	   3.当关系由多的一端来维护时，效率较高。当关系由一的一端来维护时。会多执行update语句。
+	   4.Inverse=”true”时，关系由另一端管理。不管一的一端是否指明关系，一的一端都不会去维护关系。都由多的一端负责。建议inverse=”true”.
+ 	   
+
+
+--------------------------------------------------------------------
+十一、基于外键单向一对一的关联映射  11_single_one_to_one_foreign
+            和多对一基本一致，2个表，一个Persion表外键引用另一个表IDCard主键
+             只是在多对一的基础上添加<many-to-one unique="true">,会添加一个唯一约束
+             
+             
+             
+--------------------------------------------------------------------
+十二、基于外键双向一对一的关联映射  12_double_one_to_one_foreign
+     1.Persion表中有一个外键引用自ID主键
+     2.Persion中有一个 <many-to-one name="idCard" not-null="true"  unique="true"/>
+     3.IdCard 中有一个<one-to-one name="person" property-ref="idCard"/>
+     4.当查询Persion.getID,将会发送3条SQL
+     5.当查询IDCard.getPersion,将只会发送1条SQL
+             
+             
+             
+--------------------------------------------------------------------
+十三、基于外键单向一对一的关联映射  13_single_one_to_one_primary
+     1.类没有变化，表机构变，表都没有外键
+     2.Person主键引用自IDcardID  <generator class="foreign"> <one-to-one name="idCard" constrained="true" cascade="save-update"/>
+ 	 3.IDCard没变化
+ 	 4.保存Person时，检查发现IDcard没有保存，则自动先保存IDCard,前提得在Person配置 <one-to-one  cascade="save-update">
+             
+ 
+--------------------------------------------------------------------
+ 十四、基于外键双向一对一的关联映射  14_double_one_to_one_primary            
+             
+--------------------------------------------------------------------
+ 十五、基于主键单向多对多的关联映射  15_single_many_to_many      
+  	  1.Role中，级联删除只能设置  cascade="save-update" ，不能将role删除，导致中间表和，
+ 	           中间表对应的function也删除，因为删除function表将导致中间表其他引用function表的数据出现引用外键错误      
+             
+--------------------------------------------------------------------
+ 十六、基于主键双向多对多的关联映射  16_double_many_to_many
+ 
+ 
+ 
+--------------------------------------------------------------------
+ 十七、集合使用List   17_list
+  	          
+             
+
+            
+--------------------------------------------------------------------
+ 十八、集合使用Map    18_map
+  	          
+             
+            
+--------------------------------------------------------------------
+ 十九、单表继承映射   19_extends_one_table
+ 	1.Person 中2个子类，Student/Teacher,配置Person.hbm.xml,添加鉴别器，并将子类一并映射进去
+ 	2.取数据时，如果是get方法可以通过判断是属于哪个子类，如果使用load方法，无法判断，因为load生成的是Person的代理类
+ 	
+  	          
+             
+--------------------------------------------------------------------
+ 二十、每个类一张表   20_one_class_one_table
+ 	
+  	          
+             
+  	          
+             
+--------------------------------------------------------------------
+ 二十一、每个具体类一张表   21_extends_everyclass_table
+ 	
+             
+--------------------------------------------------------------------
+ 二十二、注解   22_annotations
+ 	1.hibernate4之前使用注解需要单独加Jar.hibernate-commons-annotation/hibernate-jpa
+	2.	     //3.0以前使用
+			//Configuration cfg = new AnnotationConfiguration().configure("annotations/helloworld/hibernate.cfg.xml");
+			
+			//4.0
+			Configuration cfg = new Configuration().configure("annotations/helloworld/hibernate.cfg.xml");          
+		     
+--------------------------------------------------------------------
+二十三、HQL 查询     23_HQL
+二十四、懒加载    24_lazy_iterator
+
+
+--------------------------------------------------------------------
+二十五、使用2级缓存
+		1.配置hibernate.cfg.xml
+			 <!-- 配置使用2级缓存 4.3中 -->
+ 			 <property name="cache.use_second_level_cache">true</property>
+ 			 <property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+  		2.增加jar hibernate-ehcache
+		3.将ehcache.xml放入src下(etc下找)
+		4.在类映射文件中指定，或者在hibernate.cfg.xml中指定使用
+			<cache usage="read-only"/>  、<class-cache usage="read-only" class="cn.siggy.pojo.Book"/>
+   
+   	查询缓存：在二级缓存基础来的。 (List可以使用缓存)
+   	1、在hibernate.cfg.xml中配置      
+   		<property name="cache.use_query_cache">true</property> 
+            
+            
+            
+-------------------------
+Hibernate3  EHCache
+
+	public static void main(String[] args) {
+		Configuration cfg = new Configuration().configure();
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session session= factory.openSession();
+		Transaction tx = session.beginTransaction();
+		User u = (User)session.get(User.class, 1);
+		System.out.println(u.getName());
+		tx.commit();
+		session.close();
+		System.out.println("----------------------");
+		session= factory.openSession();
+		 tx = session.beginTransaction();
+		 u = (User)session.get(User.class, 1);
+		System.out.println(u.getName());
+		tx.commit();
+		session.close();
+	}
+	            
+	            
+	---------------------------------------------------------
+	
+	<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+	
+		<hibernate-configuration>
+		<session-factory>
+			<!--数据库信息  -->
+			<property name="connection.driver_class">
+				com.mysql.jdbc.Driver
+			</property>
+			<property name="connection.url">jdbc:mysql:///hibernate4</property>
+			<property name="connection.username">root</property>
+			<property name="connection.password">root</property>
+			<!--hibernate可选项 -->
+			<property name="dialect">
+				org.hibernate.dialect.MySQLDialect
+			</property>
+			<property name="show_sql">true</property>
+			<property name="hbm2ddl.auto">update</property>
+			<!-- 使用二级缓存 -->
+			<property name="cache.use_second_level_cache">true</property>
+			<property name="cache.provider_class">
+			org.hibernate.cache.EhCacheProvider</property>
+			<!-- 配置使用查询缓存 -->
+			<property name="cache.use_query_cache">true</property>
+			<!-- hbm文件 -->
+			<mapping resource="cn/siggy/pojo/User.hbm.xml" />
+			</session-factory>
+		</hibernate-configuration>            
+            
+            
+  -----------------------------------
+  
+  <hibernate-mapping>
+	<class name="cn.siggy.pojo.User">
+	<cache usage="read-only"/>
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="pwd"/>
+	</class>
+</hibernate-mapping>          
+            
+--------------------------------------------------------------------
+二十六、 悲观锁 pessimistic 、乐观锁 Optimistic
+            
+--------------------------------------------------------------------
+二十七、 OpenSessionInView
+	        
+--------------------------------------------------------------------
+二十七八、Struts2 + Hibernate
+	        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            

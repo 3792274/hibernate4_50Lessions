@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="single_one_to_one_foreign.pojo">
+	
+	<class name="Person">
+	
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name"/>
+		<property name="age"/>
+	
+	
+		<!-- 
+			unique="true"时候 可以设置一对一的关系
+		 -->
+		
+		<many-to-one name="idCard" class="IdCard" cascade="all"
+		column="idcard_id" foreign-key="fk_idcard" not-null="true" 
+		unique="true"/>
+		
+	</class>
+	
+	
+</hibernate-mapping>

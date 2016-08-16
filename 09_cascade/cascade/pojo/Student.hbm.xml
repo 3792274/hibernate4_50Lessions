@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cascade.pojo">
+	<class name="Student">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		<property name="age"/>
+		<!-- 
+			cascade 级联：让操作级联到子实体 
+			save-update：保存和更新多的一端数据时，一的一端的数据可以一起保存和更新
+			none:不级联
+			delete：删除级联-不能在多的一端使用
+			all:表示所有操作都级联
+			如果需要在一的一端grade级联删除多的一端student,在下面不能指定外键约束 not-null="true"，因为删除多的一端会更新多的一端外键引用为null
+		 -->
+		<many-to-one name="grade" class="Grade" column="grade_id" cascade="save-update"></many-to-one>
+	</class>
+</hibernate-mapping>

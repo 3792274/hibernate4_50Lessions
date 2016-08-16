@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="double_one_to_one_foreign.pojo">
+	<class name="IdCard">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="code"/>
+		
+		<!-- 基于外键双向，互相关联，互相映射 -->
+		<one-to-one name="person" property-ref="idCard"/>
+		
+	</class>
+</hibernate-mapping>

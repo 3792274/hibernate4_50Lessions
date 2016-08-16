@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="struts2Hibernate.pojo.Book">
+		<id name="id">
+			<!-- 主键生成策略 -->
+			<generator class="native"></generator>
+		</id>
+		<property name="name"/>	
+		<property name="author"/>
+		<property name="price"/>
+		<property name="pubDate"/>
+		<many-to-one name="category" cascade="save-update" column="categoryId" class="struts2Hibernate.pojo.Category"/>
+	</class>
+</hibernate-mapping>
+

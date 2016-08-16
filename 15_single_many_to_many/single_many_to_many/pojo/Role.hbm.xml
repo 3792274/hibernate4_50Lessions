@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="single_many_to_many.pojo">
+	<class name="Role">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		<!-- 多对多,table中间表名字 -->
+		<set name="functions" table="role_func" cascade="save-update" >
+			<!-- 表示当前类的Role.ID 映射到关系表中的列-->
+			<key column="rid" />
+			<!-- 所对应的另一方Function.ID 在关系表中的列 -->
+			<many-to-many column="fid" class="Function"/>
+		</set>
+	</class>
+</hibernate-mapping>

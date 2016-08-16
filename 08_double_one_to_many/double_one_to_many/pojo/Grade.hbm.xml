@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="double_one_to_many.pojo">
+	
+	
+	<class name="Grade">
+		
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name"/>
+		
+		<!-- set是 Grade中的集合属性  name属性名称 -->
+		<set name="students">
+			<!-- key表示外键  column外键列名,此列在多的一方student-->
+			<key column="grade_id"></key>  <!-- 不能加not-null -->
+			<!-- one-to-many 一对多  类Grade 中  students 所表示类型 -->
+			<one-to-many class="Student"/>
+		</set>
+		
+	</class>
+	
+	
+</hibernate-mapping>

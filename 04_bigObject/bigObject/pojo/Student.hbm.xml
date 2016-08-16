@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="bigObject.pojo">
+	<class name="Student">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		<property name="age"/>
+		<property name="image" type="java.sql.Blob"/>
+		<property name="introduce" type="java.sql.Clob"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="one_class_one_table.pojo">
+	
+	<!-- 不生成空白Person表： abstract="true" -->
+	<class name="Person" abstract="true">
+		
+		<id name="id" column="id">
+			<generator class="assigned" />  <!-- 自定义主键 -->
+		</id>
+		
+		<property name="name" />
+		<property name="age" />
+		
+		<!-- 每个类一张表的映射 -->
+		<union-subclass name="Student">
+			<property name="work" />
+		</union-subclass>
+		
+		<union-subclass name="Teacher">
+			<property name="salary" />
+		</union-subclass>
+	
+	
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="list_single_one_to_many.pojo">
+	
+	<class name="Grade">
+	
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name"/>
+		
+		<list name="students" cascade="all">
+			<!-- key表示外键  column外键列名-->
+			<key column="grade_id"></key>
+			<!-- 在多的一端 产生一列 用来表示顺序,List为有序的， 如果不指明列名 默认为 idx  值由hibernate来维护 -->
+			<list-index column="sort"/>
+			<!-- one-to-many 一对多  类Grade 中  students 所表示类型 -->
+			<one-to-many class="Student"/>
+		</list>
+	</class>
+	
+	
+	
+	
+</hibernate-mapping>
