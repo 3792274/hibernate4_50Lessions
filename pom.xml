@@ -6,6 +6,7 @@
   <packaging>war</packaging>
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <outputDirectory>WebContent/WEB-INF/classes</outputDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -61,5 +62,11 @@
   		<artifactId>struts2-core</artifactId>
   		<version>2.5.2</version>
   	</dependency>
+  	 <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.5.6-Final</version>
+     </dependency>
+        
   </dependencies>
 </project>
